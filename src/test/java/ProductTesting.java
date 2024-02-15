@@ -1,3 +1,4 @@
+import org.example.DAO.ProductDAO;
 import org.example.Exceptions.ProductException;
 import org.example.Model.Product;
 import org.example.Service.ProductService;
@@ -10,18 +11,17 @@ import java.util.List;
 
 public class ProductTesting {
 
-ProductService productService;
-SellerService sellerService;
+    ProductDAO productDAO;
+    ProductService productService;
 
 @Before
 public void setUp(){
-    sellerService = new SellerService();
-    productService = new ProductService(sellerService);
+    this.productDAO = productDAO;
 }
 
 @Test
 public void insertProductTest(){
-List<Product> initialProductServiceList = productService.getAllProducts();
+List<Product> initialProductServiceList = productDAO.getAllProducts();
 //long productId = (long) (Math.random() * Long.MAX_VALUE);
 long productId = productService.generateProductId();
 

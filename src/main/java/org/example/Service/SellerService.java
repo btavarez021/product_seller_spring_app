@@ -1,5 +1,6 @@
 package org.example.Service;
 
+import org.example.DAO.SellerDAO;
 import org.example.Exceptions.SellerException;
 import org.example.Model.Seller;
 import java.util.ArrayList;
@@ -7,14 +8,15 @@ import java.util.List;
 
 public class SellerService {
 
-    List<Seller> sellerList;
+    SellerDAO sellerDAO;
 
-    public SellerService(){
+    public SellerService(SellerDAO sellerDAO){
 
-        this.sellerList= new ArrayList<>();
+        this.sellerDAO = sellerDAO;
     }
 
     public List<Seller> getSellerList(){
+        List<Seller> sellerList = sellerDAO.getSellerAllSeller();
 
         return sellerList;
     }
@@ -25,7 +27,7 @@ public class SellerService {
             throw new SellerException("You cannot have a blank seller name!");
         }
         if (!doesSellerExist(seller)) {
-            sellerList.add(seller);
+            sellerDAO.insertSeller(seller);
         }
         else{
             throw new SellerException(seller.getSellerName() + " already exists");
@@ -34,7 +36,7 @@ public class SellerService {
 
     public boolean doesSellerExist(Seller seller) {
 
-            return sellerList.contains(seller);
+            return sellerDAO.getSellerAllSeller().contains(seller);
     }
 
 }

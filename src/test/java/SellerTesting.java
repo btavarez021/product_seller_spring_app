@@ -1,3 +1,4 @@
+import org.example.DAO.SellerDAO;
 import org.example.Exceptions.SellerException;
 import org.example.Model.Seller;
 import org.example.Service.SellerService;
@@ -5,14 +6,21 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.sql.Connection;
 import java.util.List;
 
 public class SellerTesting {
 
     SellerService sellerService;
+    SellerDAO sellerDAO;
+
+    Connection conn;
+
     @Before
-    public void SellerTesting(){
-        sellerService = new SellerService();
+    public void setUp(){
+        sellerDAO = new SellerDAO(conn);
+        sellerService = new SellerService(sellerDAO);
     }
 
     @After

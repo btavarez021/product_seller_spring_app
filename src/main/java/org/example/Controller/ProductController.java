@@ -95,6 +95,11 @@ public class ProductController {
         catch (JsonProcessingException e){
             context.status(400);
         }
+        catch(NumberFormatException e){
+            context.status(400).result("Product ID is missing in the request");
+        } catch (ProductException e) {
+            context.status(400).result(e.getMessage());
+        }
 
     }
 
@@ -117,10 +122,8 @@ public class ProductController {
         try{
         long productId = Long.parseLong(context.pathParam("productId"));
         Product p = productService.getProductById(productId);
-        System.out.println("HERE IS P OUTSIDE: "+ p);
         if(p == null){
             context.status(404);
-            System.out.println("HERE IS P INSIDE: " + p);
         }
         else{
             context.json(p);
