@@ -7,18 +7,44 @@ public class Product {
 private long productId;
 private String productName;
 private double price;
-private String sellerName;
 
-public Product(){
+private long sellerId;
 
-}
+    public Product(){
 
-public Product(long productId, String productName, double price, String sellerName){
-    this.productId = productId;
-    this.productName = productName;
-    this.price = price;
-    this.sellerName = sellerName;
-}
+    }
+
+    public Product(long productId, String productName, double price, String sellerName, long sellerId){
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+        this.sellerName = sellerName;
+        this.sellerId = sellerId;
+    }
+
+    public long getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(long sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productId == product.productId && Double.compare(price, product.price) == 0 && sellerId == product.sellerId && Objects.equals(productName, product.productName) && Objects.equals(sellerName, product.sellerName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, productName, price, sellerName, sellerId);
+    }
+
+    private String sellerName;
+
 
 
     @Override
@@ -29,19 +55,6 @@ public Product(long productId, String productName, double price, String sellerNa
                 ", price=" + price +
                 ", sellerName='" + sellerName + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return productId == product.productId && Double.compare(price, product.price) == 0 && Objects.equals(productName, product.productName) && Objects.equals(sellerName, product.sellerName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId, productName, price, sellerName);
     }
 
     public void setPrice(double price){

@@ -26,7 +26,8 @@ public class SellerDAO {
 
             while(rs.next()){
                 String sellerName = rs.getString("seller_name");
-                Seller s = new Seller(sellerName);
+                long sellerId = rs.getLong("seller_id");
+                Seller s = new Seller(sellerName, sellerId);
                 getSellerList.add(s);
             }
         }
@@ -40,12 +41,25 @@ public class SellerDAO {
 
     public void insertSeller(Seller s){
         try{
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO SELLER (seller_name) values (?)");
-            ps.setString(1, s.getSellerName());
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO SELLER (seller_id, seller_name) values (?, ?)");
+            ps.setLong(1, s.getSellerId());
+            ps.setString(2, s.getSellerName());
             ps.executeUpdate();
             System.out.println("HERE ARE THE INSERT VALUES: " + ps);
         }
         catch (SQLException e ){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteSellerById(Seller s){
+        try{
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM SELLER WHERE seller_id=?");
+            System.out.println("3: "+ s.getSellerId());
+            ps.setLong(1, s.getSellerId());
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
             e.printStackTrace();
         }
     }

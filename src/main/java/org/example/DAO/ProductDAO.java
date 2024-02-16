@@ -1,6 +1,7 @@
 package org.example.DAO;
 
 import org.example.Model.Product;
+import org.example.Model.Seller;
 
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -30,7 +31,8 @@ public class ProductDAO {
                 String productName = rs.getString("product_name");
                 double price = rs.getDouble("price");
                 String sellerName = rs.getString("seller_name");
-                Product p = new Product(productId, productName, price, sellerName);
+                long sellerId = rs.getLong("seller_id");
+                Product p = new Product(productId, productName, price, sellerName, sellerId);
                 productResults.add(p);
             }
 
@@ -45,12 +47,13 @@ public class ProductDAO {
     public void insertProducts(Product p){
 
         try{
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO Products (product_id, product_name, price, seller_name)" +
-                    " values (?,?,?,?)");
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO Products (product_id, product_name, price, " +
+                    "seller_name, seller_id) values (?,?,?,?,?)");
             ps.setLong(1, p.getProductId());
             ps.setString(2,p.getProductName());
             ps.setDouble(3,p.getPrice());
             ps.setString(4,p.getSellerName());
+            ps.setLong(5, p.getSellerId());
             ps.executeUpdate();
         }
         catch(SQLException e ){
@@ -75,6 +78,18 @@ public class ProductDAO {
 
          }
 
+    }
+
+    public void deleteProductById(Product p){
+        try{
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM Products WHERE product_id=?");
+            System.out.println(p.getProductId());
+            ps.setLong(1, p.getProductId());
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
 

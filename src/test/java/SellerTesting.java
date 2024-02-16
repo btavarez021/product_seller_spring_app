@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.UUID;
 
 public class SellerTesting {
 
@@ -22,7 +23,6 @@ public class SellerTesting {
         sellerDAO = new SellerDAO(conn);
         sellerService = new SellerService(sellerDAO);
     }
-
     @After
     public void tearDown(){
         sellerService.getSellerList().clear();
@@ -30,12 +30,17 @@ public class SellerTesting {
 
     @Test
     public void insertProductTest(){
-        String sellerName = "Benny";
 
-        Seller s =new Seller(sellerName);
+        UUID uuid = UUID.randomUUID();
+
+        String sellerName = "Benny";
+        long productId = uuid.getMostSignificantBits() & Long.MAX_VALUE;
+
+
+        Seller s =new Seller(sellerName, productId);
 
         try {
-            sellerService.postSeller(s);
+            sellerService.postSeller(s, productId);
         } catch (SellerException e) {
             Assert.fail("Unexpected exception occurred");
         }
@@ -49,11 +54,13 @@ public class SellerTesting {
     @Test
     public void insertProductWithEmptyProductName() {
         String sellerName = "";
+        UUID uuid = UUID.randomUUID();
 
-        Seller s = new Seller(sellerName);
+        long productId = uuid.getMostSignificantBits() & Long.MAX_VALUE;
+        Seller s = new Seller(sellerName, productId);
 
         try {
-            sellerService.postSeller(s);
+            sellerService.postSeller(s, productId);
             Assert.fail("Expected Seller Exception due to empty product name");
         } catch (SellerException e) {
             System.out.println(e.getMessage());

@@ -4,22 +4,29 @@ import java.util.Objects;
 
 public class Seller {
 
-String sellerName;
+    long sellerId;
+    String sellerName;
 
-public Seller(){
 
-}
+    public Seller(){
 
-public Seller(String sellerName){
+    }
 
-    this.sellerName = sellerName;
-}
 
-    @Override
-    public String toString() {
-        return "Seller{" +
-                "sellerName='" + sellerName + '\'' +
-                '}';
+    public Seller(String sellerName, long sellerId){
+
+        this.sellerId = sellerId;
+        this.sellerName = sellerName;
+    }
+
+    public String getSellerName() {
+
+        return sellerName.trim();
+    }
+
+    public void setSellerName(String sellerName) {
+
+        this.sellerName = sellerName;
     }
 
     @Override
@@ -27,22 +34,28 @@ public Seller(String sellerName){
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Seller seller = (Seller) o;
-        return Objects.equals(sellerName, seller.sellerName);
+        return sellerId == seller.sellerId && Objects.equals(sellerName, seller.sellerName);
     }
 
     @Override
     public int hashCode() {
-
-    return Objects.hash(sellerName);
+        return Objects.hash(sellerName, sellerId);
     }
 
-    public String getSellerName() {
-
-    return sellerName.trim();
+    @Override
+    public String toString() {
+        return "Seller{" +
+                "sellerId=" + sellerId +
+                ", sellerName='" + sellerName + '\'' +
+                '}';
     }
 
-    public void setSellerName(String sellerName) {
-
-    this.sellerName = sellerName;
+    public long getSellerId() {
+        return sellerId;
     }
+
+    public void setSellerId(long productId) {
+        this.sellerId = productId;
+    }
+
 }

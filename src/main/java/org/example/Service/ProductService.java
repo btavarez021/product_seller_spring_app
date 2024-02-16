@@ -1,8 +1,11 @@
 package org.example.Service;
 
 import org.example.DAO.ProductDAO;
+import org.example.DAO.SellerDAO;
 import org.example.Exceptions.ProductException;
 import org.example.Model.Product;
+import org.example.Model.Seller;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -10,9 +13,11 @@ import java.util.UUID;
 public class ProductService {
 
     ProductDAO productDAO;
+    SellerService sellerService;
 
-    public ProductService(ProductDAO productDAO){
+    public ProductService(ProductDAO productDAO, SellerService sellerService){
         this.productDAO = productDAO;
+        this.sellerService = sellerService;
     }
 
     public List<Product> getAllProducts(){
@@ -28,10 +33,28 @@ public class ProductService {
     public void insertProduct(Product product, long productId) throws ProductException {
         product.setProductId(productId);
         validateProduct(product);
-        if (doesSellerExist(product)){
-            throw new ProductException(product.getSellerName() + " already exists. ");
-        }
+
+        long sellerId = getSellerIdByName(product.getSellerName());
+        product.setSellerId(sellerId);
+
+//        if (doesSellerExist(product)){
+//            throw new ProductException(product.getSellerName() + " already exists. ");
+//        }
+        System.out.println("getSellerId: " + product.getSellerId());
+
         productDAO.insertProducts(product);
+    }
+
+    private long getSellerIdByName(String sellerName) throws ProductException
+    {
+        List<Seller> sellers = sellerService.getSellerList();
+
+        for(Seller seller:sellers){
+            if(seller.getSellerName().equals(sellerName)){
+                return seller.getSellerId();
+            }
+        }
+        throw new ProductException("Seller with name " + sellerName + " not found");
     }
 
     private void validateProduct(Product product) throws ProductException {
@@ -61,7 +84,7 @@ public class ProductService {
         for (int i = 0; i < productDAO.getAllProducts().size(); i++) {
             Product currentProduct = productDAO.getAllProducts().get(i);
             if (currentProduct.getProductId() == id) {
-                productDAO.getAllProducts().remove(i);
+                productDAO.deleteProductById(currentProduct);
             }
         }
     }

@@ -19,7 +19,7 @@ public class Main {
         ProductDAO productDAO = new ProductDAO(conn);
 
         SellerService sellerService = new SellerService(sellerDAO);
-        ProductService productService = new ProductService(productDAO);
+        ProductService productService = new ProductService(productDAO, sellerService);
 
         ProductController productController = new ProductController(productService, sellerService);
         productController.getApi().start(9001);

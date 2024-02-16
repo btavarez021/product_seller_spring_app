@@ -2,9 +2,11 @@ package org.example.Service;
 
 import org.example.DAO.SellerDAO;
 import org.example.Exceptions.SellerException;
+import org.example.Model.Product;
 import org.example.Model.Seller;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class SellerService {
 
@@ -21,12 +23,18 @@ public class SellerService {
         return sellerList;
     }
 
-    public void postSeller(Seller seller) throws SellerException {
+    public long generateSellerId(){
+        UUID uuid = UUID.randomUUID();
+        return uuid.getMostSignificantBits() & Long.MAX_VALUE;
+    }
 
+    public void postSeller(Seller seller, long sellerId) throws SellerException {
+        seller.setSellerId(sellerId);
         if(seller.getSellerName().isEmpty()){
             throw new SellerException("You cannot have a blank seller name!");
         }
         if (!doesSellerExist(seller)) {
+            System.out.println("SELLER: " + sellerDAO.getSellerAllSeller());
             sellerDAO.insertSeller(seller);
         }
         else{
@@ -36,7 +44,23 @@ public class SellerService {
 
     public boolean doesSellerExist(Seller seller) {
 
-            return sellerDAO.getSellerAllSeller().contains(seller);
+        for(Seller s: sellerDAO.getSellerAllSeller()){
+            if(s.getSellerName().equals(seller.getSellerName())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void deleteSeller(long id){
+        for (int i = 0; i < sellerDAO.getSellerAllSeller().size(); i++) {
+            Seller currentProduct = sellerDAO.getSellerAllSeller().get(i);
+            System.out.println("1: " + currentProduct.getSellerId());
+            System.out.println("2: " + id);
+            if (currentProduct.getSellerId() == id) {
+                sellerDAO.deleteSellerById(currentProduct);
+            }
+        }
     }
 
 }

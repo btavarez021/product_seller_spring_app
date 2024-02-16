@@ -40,6 +40,7 @@ public class ProductController {
         api.post("/products", ProductController::postProductHandler);
 
         api.delete("/products/{productId}", ProductController::deleteProductByIdHandler);
+        api.delete("/seller/{sellerId}", ProductController::deleteSellerbyIdHander);
         api.put("/products/{productId}", ProductController::updateProductByIdHandler);
 
         return api;
@@ -54,6 +55,12 @@ public class ProductController {
         catch(Exception e){
             context.status(400);
         }
+    }
+
+    public static void deleteSellerbyIdHander(Context context) {
+        long sellerId = Long.parseLong(context.pathParam("sellerId"));
+        sellerService.deleteSeller(sellerId);
+        context.status(200);
     }
 
     public static void getAllProductsHandler(Context context){
@@ -72,6 +79,7 @@ public class ProductController {
 
         try {
             long productId = productService.generateProductId();
+            long sellerId = sellerService.generateSellerId();
             Product p = om.readValue(context.body(), Product.class);
             productService.insertProduct(p, productId);
             context.status(201);
@@ -107,8 +115,9 @@ public class ProductController {
         ObjectMapper om =new ObjectMapper();
 
         try {
-            Seller p = om.readValue(context.body(), Seller.class);
-            sellerService.postSeller(p);
+            long sellerId = sellerService.generateSellerId();
+            Seller s = om.readValue(context.body(), Seller.class);
+            sellerService.postSeller(s, sellerId);
             context.status(201);
 
         } catch (SellerException | JsonProcessingException e) {
