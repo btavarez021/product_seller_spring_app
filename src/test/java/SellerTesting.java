@@ -29,7 +29,7 @@ public class SellerTesting {
     }
 
     @Test
-    public void insertProductTest(){
+    public void insertSellerTest(){
 
         UUID uuid = UUID.randomUUID();
 

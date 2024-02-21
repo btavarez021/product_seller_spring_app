@@ -1,5 +1,3 @@
---ALTER TABLE PRODUCTS DROP CONSTRAINT CONSTRAINT_F2;
-
 
 DROP TABLE SELLER IF EXISTS;
 CREATE TABLE SELLER (
@@ -15,6 +13,9 @@ CREATE TABLE PRODUCTS (
     seller_name varchar(255) not null,
     SELLER_ID varchar(255) references SELLER(seller_id)
 );
+
+ALTER TABLE PRODUCTS DROP constraint CONSTRAINT_F2;
+
 
 
 

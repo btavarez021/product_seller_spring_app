@@ -18,8 +18,8 @@ public class ProductController {
     static SellerService sellerService;
 
     public ProductController(ProductService productService, SellerService sellerService){
-        this.productService = productService;
-        this.sellerService = sellerService;
+        ProductController.productService = productService;
+        ProductController.sellerService = sellerService;
     }
 
     public Javalin getApi(){
@@ -39,26 +39,28 @@ public class ProductController {
         api.post("/seller", ProductController::postSellerHandler);
         api.post("/products", ProductController::postProductHandler);
 
+        api.put("/products/{productId}", ProductController::updateProductByIdHandler);
+
         api.delete("/products/{productId}", ProductController::deleteProductByIdHandler);
         api.delete("/seller/{sellerId}", ProductController::deleteSellerbyIdHander);
-        api.put("/products/{productId}", ProductController::updateProductByIdHandler);
 
         return api;
     }
 
     public static void deleteProductByIdHandler(Context context){
         try {
-            long productId = Long.parseLong(context.pathParam("productId"));
+            long productId = Long.parseLong(context.pathParam("productId").trim());
             productService.deleteProductById(productId);
             context.status(200);
         }
-        catch(Exception e){
+        catch(ProductException e){
             context.status(400);
+            context.result(e.getMessage());
         }
     }
 
     public static void deleteSellerbyIdHander(Context context) {
-        long sellerId = Long.parseLong(context.pathParam("sellerId"));
+        long sellerId = Long.parseLong(context.pathParam("sellerId").trim());
         sellerService.deleteSeller(sellerId);
         context.status(200);
     }
@@ -79,7 +81,7 @@ public class ProductController {
 
         try {
             long productId = productService.generateProductId();
-            long sellerId = sellerService.generateSellerId();
+//            long sellerId = sellerService.generateSellerId();
             Product p = om.readValue(context.body(), Product.class);
             productService.insertProduct(p, productId);
             context.status(201);
@@ -95,7 +97,7 @@ public class ProductController {
         ObjectMapper om =new ObjectMapper();
 
         try {
-            long productId = Long.parseLong(context.pathParam("productId"));
+            long productId = Long.parseLong(context.pathParam("productId").trim());
             Product p = om.readValue(context.body(), Product.class);
             productService.updateProductById(p, productId);
             context.status(201);
@@ -129,16 +131,16 @@ public class ProductController {
 
     public static void getProductById(Context context){
         try{
-        long productId = Long.parseLong(context.pathParam("productId"));
-        Product p = productService.getProductById(productId);
-        if(p == null){
-            context.status(404);
+            long productId = Long.parseLong(context.pathParam("productId"));
+            Product p = productService.getProductById(productId);
+            if(p == null){
+                context.status(404);
+            }
+            else{
+                context.json(p);
+                context.status(200);
+            }
         }
-        else{
-            context.json(p);
-            context.status(200);
-        }
-    }
         catch(NumberFormatException e){
             context.status(404);
             context.result("Invalid Product Id");

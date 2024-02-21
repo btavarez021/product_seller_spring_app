@@ -1,6 +1,8 @@
+import org.eclipse.jetty.security.PropertyUserStore;
 import org.example.DAO.ProductDAO;
 import org.example.DAO.SellerDAO;
 import org.example.Exceptions.ProductException;
+import org.example.Exceptions.SellerException;
 import org.example.Model.Product;
 import org.example.Model.Seller;
 import org.example.Service.ProductService;
@@ -17,6 +19,7 @@ import java.util.List;
 public class ProductTesting {
 
     Connection conn;
+    SellerTesting sellerTesting;
 
     private ProductDAO productDAO;
     private SellerDAO sellerDAO;
@@ -25,24 +28,35 @@ public class ProductTesting {
 
     @Before
     public void setUp(){
-        // Initialize your ProductDAO, ProductService, and SellerService here
         ConnectionSingleton.resetTestDatabase();
         Connection conn = ConnectionSingleton.getConnection();
         productDAO = new ProductDAO(conn);
         sellerDAO = new SellerDAO(conn);
-        productService = new ProductService(productDAO, sellerService);
         sellerService = new SellerService(sellerDAO);
+        productService = new ProductService(productDAO, sellerService);
+
     }
 
     @Test
     public void insertProductTest(){
-        List<Product> initialProductServiceList = productDAO.getAllProducts();
-//long productId = (long) (Math.random() * Long.MAX_VALUE);
+        //Generate unique ID's
         long productId = productService.generateProductId();
+        long productId2 = productService.generateProductId();
+        long sellerId = sellerService.generateSellerId();
+
+        //Create Seller and post it
+        String sellerName = "Benny";
+        Seller seller = new Seller(sellerName, sellerId);
+
+        try{
+            sellerService.postSeller(seller, sellerId);
+        }catch(SellerException e){
+            Assert.fail("Failed to post seller: "+ e.getMessage());
+        }
+
+        //Insert a product
         String productName = "Apple Watch";
         double price = 799.99;
-        String sellerName = "Benny";
-        long sellerId = sellerService.generateSellerId();
 
         Product p =new Product(productId, productName, price, sellerName, sellerId);
 
@@ -51,24 +65,40 @@ public class ProductTesting {
         }
         catch(ProductException e) {
             e.printStackTrace();
-            Assert.fail("Unexpected exception occurred");
+            Assert.fail("Unexpected exception occurred "+ e.getMessage());
         }
 
+        //Verify if product exists
         List<Product> updatedProductList = productService.getAllProducts();
 
         //Assert Product is added
-        Assert.assertTrue(updatedProductList.contains(p));
+        Assert.assertTrue("Inserted product not found in database", updatedProductList.contains(p));
     }
 
     @Test
     public void insertProductWithEmptySellerName(){
+
+        //Generate unique ids
         long productId = productService.generateProductId();
-        String productName = "Apple Watch";
-        double price = 799.99;
-        String sellerName = "";
         long sellerId = sellerService.generateSellerId();
 
-        Product p =new Product(productId, productName, price, sellerName, sellerId);
+        //Create Seller and post it
+        String sellerName = "Benny";
+        Seller seller = new Seller(sellerName, sellerId);
+
+        try{
+            sellerService.postSeller(seller, sellerId);
+        }catch(SellerException e){
+            Assert.fail("Failed to post seller: "+ e.getMessage());
+        }
+
+        //create and insert product
+
+        String productName = "Apple Watch";
+        double price = 799.99;
+        String sellerName2 = "";
+
+        Product p =new Product(productId, productName, price, sellerName2, sellerId);
 
         try {
             productService.insertProduct(p, productId);
@@ -95,47 +125,73 @@ public class ProductTesting {
             productService.insertProduct(p, productId);
             Assert.fail("Expected Product Exception due to empty product name");
         } catch (ProductException e) {
-            System.out.println(e.getMessage());
             Assert.assertEquals("You cannot leave product name blank!", e.getMessage());
             Assert.assertTrue(productService.getAllProducts().isEmpty());
         }
 
     }
     @Test
-    public void insertProductWithSellerThatExists() {
-//        long productId = (long) (Math.random() * Long.MAX_VALUE);
+    public void insertProductWithSellerThatDoesntExists() {
+        //Generate unique ids
         long productId = productService.generateProductId();
-        String productName = "Apple Watch";
-        double price = 799.99;
-        String sellerName = "Benny";
+        long productId2 = productService.generateProductId();
         long sellerId = sellerService.generateSellerId();
 
+        //Create Seller and post it
+        String sellerName = "Benny";
+        Seller seller = new Seller(sellerName, sellerId);
+
+        try{
+            sellerService.postSeller(seller, sellerId);
+        }catch(SellerException e){
+            Assert.fail("Failed to post seller: "+ e.getMessage());
+        }
+
+        //create a product with same seller and attempt to insert it twice
+        String productName = "Apple Watch";
+        String sellerName2 = "James";
+        double price = 799.99;
+
         Product p =new Product(productId, productName, price, sellerName, sellerId);
+        Product p2 =new Product(productId2, productName, price, sellerName2, sellerId);
 
         try {
             productService.insertProduct(p, productId);
-            productService.insertProduct(p, productId);
+            productService.insertProduct(p2, productId2);
             Assert.fail("Expected Product Exception due seller name already existing");
         } catch (ProductException e) {
-            Assert.assertEquals(sellerName + " already exists. ", e.getMessage());
+            Assert.assertEquals("Seller with name "+ sellerName2+ " not found", e.getMessage());
             Assert.assertEquals(1, productService.getAllProducts().size());
         }
     }
     @Test
     public void deleteProductWithId() throws ProductException {
-        long productIdToDelete = productService.generateProductId();
+        //Generate unique ids
+        long productId = productService.generateProductId();
         long sellerId = sellerService.generateSellerId();
 
-        Seller createSeller = new Seller("Benny", sellerId);
+        //Create Seller and post it
+        String sellerName = "Benny";
+        Seller seller = new Seller(sellerName, sellerId);
+
+        try{
+            sellerService.postSeller(seller, sellerId);
+        }catch(SellerException e){
+            Assert.fail("Failed to post seller: "+ e.getMessage());
+        }
+
+        //Insert Product
         Product productToDelete = new Product(productService.generateProductId(), "Apple Watch",
-                899.99, "Benny", sellerId);
-        productService.insertProduct(productToDelete, productIdToDelete);
+                799.99, "Benny", sellerId);
+        productService.insertProduct(productToDelete, productId);
 
-        Assert.assertTrue(productService.doesProductExist(productIdToDelete));
+        Assert.assertTrue(productService.doesProductExist(productId));
 
-        productService.deleteProductById(productIdToDelete);
+        //Delete product
+        productService.deleteProductById(productId);
 
-        Assert.assertFalse(productService.doesProductExist(productIdToDelete));
+        //check if product exists after deletion
+        Assert.assertFalse(productService.doesProductExist(productId));
 
     }
 

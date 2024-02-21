@@ -34,7 +34,6 @@ public class SellerService {
             throw new SellerException("You cannot have a blank seller name!");
         }
         if (!doesSellerExist(seller)) {
-            System.out.println("SELLER: " + sellerDAO.getSellerAllSeller());
             sellerDAO.insertSeller(seller);
         }
         else{
@@ -55,8 +54,6 @@ public class SellerService {
     public void deleteSeller(long id){
         for (int i = 0; i < sellerDAO.getSellerAllSeller().size(); i++) {
             Seller currentProduct = sellerDAO.getSellerAllSeller().get(i);
-            System.out.println("1: " + currentProduct.getSellerId());
-            System.out.println("2: " + id);
             if (currentProduct.getSellerId() == id) {
                 sellerDAO.deleteSellerById(currentProduct);
             }

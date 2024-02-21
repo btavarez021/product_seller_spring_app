@@ -21,8 +21,10 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts(){
+
         List<Product> productList = productDAO.getAllProducts();
         return productList;
+
     }
 
     public long generateProductId(){
@@ -34,15 +36,18 @@ public class ProductService {
         product.setProductId(productId);
         validateProduct(product);
 
-        long sellerId = getSellerIdByName(product.getSellerName());
+        long sellerId = getSellerIdByName(product.getSellerName().trim());
+
         product.setSellerId(sellerId);
 
-//        if (doesSellerExist(product)){
+        if (doesSellerExist(product)){
+            productDAO.insertProducts(product);
+        }
+//        else{
 //            throw new ProductException(product.getSellerName() + " already exists. ");
+//
 //        }
-        System.out.println("getSellerId: " + product.getSellerId());
 
-        productDAO.insertProducts(product);
     }
 
     private long getSellerIdByName(String sellerName) throws ProductException
@@ -68,11 +73,11 @@ public class ProductService {
         }
     }
 
-    private void validateSellerName(String sellerName) throws ProductException{
-        if(sellerName.isEmpty()){
-            throw new ProductException("You cannot leave seller name blank!");
-        }
-    }
+//    private void validateSellerName(String sellerName) throws ProductException{
+//        if(sellerName.isEmpty()){
+//            throw new ProductException("You cannot leave seller name blank!");
+//        }
+//    }
 
     private void validatePrice(double price) throws ProductException {
         if(price < 0){
@@ -80,35 +85,48 @@ public class ProductService {
         }
     }
 
-    public void deleteProductById(Long id) {
+    public void validateSellerName(String sellerName) throws ProductException{
+        if(sellerName.isEmpty()){
+            throw new ProductException("You cannot leave seller name blank!");
+        }
+    }
+
+    public void deleteProductById(Long id) throws ProductException {
+
         for (int i = 0; i < productDAO.getAllProducts().size(); i++) {
             Product currentProduct = productDAO.getAllProducts().get(i);
             if (currentProduct.getProductId() == id) {
                 productDAO.deleteProductById(currentProduct);
+            }
+            else{
+                throw new ProductException("Product ID "+ id + " does not exist.");
             }
         }
     }
 
     public void updateProductById(Product product, long productId) throws ProductException {
 
-        validateProduct(product);
-
-        for(int i=0; i < productDAO.getAllProducts().size(); i++){
-            Product currentProduct = productDAO.getAllProducts().get(i);
-            product.setProductId(productId);
-            if(currentProduct.getProductId() == productId){
-                currentProduct.setProductName(product.getProductName());
-                currentProduct.setPrice(product.getPrice());
-                currentProduct.setSellerName(product.getSellerName());
-                productDAO.updateProduct(product);
-                break;
+        if (doesSellerExist(product)) {
+            for (int i = 0; i < productDAO.getAllProducts().size(); i++) {
+                Product currentProduct = productDAO.getAllProducts().get(i);
+                product.setProductId(productId);
+                if (currentProduct.getProductId() == productId) {
+                    validateProduct(product);
+                    currentProduct.setProductName(product.getProductName());
+                    currentProduct.setPrice(product.getPrice());
+                    currentProduct.setSellerName(product.getSellerName());
+                    productDAO.updateProduct(product);
+                    break;
+                } else {
+                    throw new ProductException(productId + " does not exist.");
+                }
             }
-            else{
-                System.out.println(currentProduct.getProductId() + " does not match "+ productId);
-            }
-            System.out.println("CURRENT PRODUCT: "+ currentProduct);
-
         }
+        else {
+                throw new ProductException(product.getSellerName() + " does not exist. " +
+                        "Please create seller before updating the product.");
+
+            }
     }
 
     public Product getProductById(Long id){
@@ -123,7 +141,16 @@ public class ProductService {
 
     public boolean doesSellerExist(Product product) {
 
-        return productDAO.getAllProducts().stream().anyMatch(existingProduct -> existingProduct.getSellerName()
+//        System.out.println("2: " + product.getSellerName());
+//
+//        for(Product p:productDAO.getAllProducts()){
+//            System.out.println("1: " + p.getSellerName());
+//        }
+//
+//        System.out.println(productDAO.getAllProducts().stream().anyMatch(existingProduct -> existingProduct.getSellerName()
+//                .equals(product.getSellerName())));
+
+        return productDAO.getAllProducts().stream().allMatch(existingProduct -> existingProduct.getSellerName()
                 .equals(product.getSellerName()));
     }
 

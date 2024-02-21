@@ -83,7 +83,6 @@ public class ProductDAO {
     public void deleteProductById(Product p){
         try{
             PreparedStatement ps = conn.prepareStatement("DELETE FROM Products WHERE product_id=?");
-            System.out.println(p.getProductId());
             ps.setLong(1, p.getProductId());
             ps.executeUpdate();
         }

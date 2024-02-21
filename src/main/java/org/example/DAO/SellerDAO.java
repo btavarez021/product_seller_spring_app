@@ -34,7 +34,6 @@ public class SellerDAO {
         catch(SQLException e){
             e.printStackTrace();
         }
-        System.out.println("HERE ARE THE GET Seller list " + getSellerList);
 
         return getSellerList;
     }
@@ -45,7 +44,6 @@ public class SellerDAO {
             ps.setLong(1, s.getSellerId());
             ps.setString(2, s.getSellerName());
             ps.executeUpdate();
-            System.out.println("HERE ARE THE INSERT VALUES: " + ps);
         }
         catch (SQLException e ){
             e.printStackTrace();
@@ -55,7 +53,6 @@ public class SellerDAO {
     public void deleteSellerById(Seller s){
         try{
             PreparedStatement ps = conn.prepareStatement("DELETE FROM SELLER WHERE seller_id=?");
-            System.out.println("3: "+ s.getSellerId());
             ps.setLong(1, s.getSellerId());
             ps.executeUpdate();
         }

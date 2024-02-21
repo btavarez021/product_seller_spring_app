@@ -1,14 +1,18 @@
 package org.example.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Objects;
 
 public class Product {
 
-private long productId;
-private String productName;
-private double price;
+    private long productId;
+    private String productName;
+    private double price;
 
-private long sellerId;
+    private long sellerId;
+
+    private String sellerName;
 
     public Product(){
 
@@ -43,8 +47,6 @@ private long sellerId;
         return Objects.hash(productId, productName, price, sellerName, sellerId);
     }
 
-    private String sellerName;
-
 
 
     @Override
@@ -69,6 +71,7 @@ public void setProductName(String productName){
 public void setProductId(long productId){
     this.productId = productId;
 }
+
 public void setSellerName(String sellerName){
     this.sellerName = sellerName;
 }

@@ -9,12 +9,13 @@ import org.example.Util.ConnectionSingleton;
 
 import java.sql.Connection;
 
-
 public class Main {
 
-
     public static void main(String[] args) {
+
         Connection conn = ConnectionSingleton.getConnection();
+//        RunSQL runSQL = new RunSQL(conn);
+//        System.out.println(runSQL.getConstraint());
         SellerDAO sellerDAO = new SellerDAO(conn);
         ProductDAO productDAO = new ProductDAO(conn);
 
@@ -25,3 +26,4 @@ public class Main {
         productController.getApi().start(9001);
     }
 }
+
