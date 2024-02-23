@@ -1,6 +1,5 @@
 package org.example.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Objects;
 

@@ -18,9 +18,6 @@ import java.util.List;
 
 public class ProductTesting {
 
-    Connection conn;
-    SellerTesting sellerTesting;
-
     private ProductDAO productDAO;
     private SellerDAO sellerDAO;
     private ProductService productService;

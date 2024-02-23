@@ -2,9 +2,7 @@ package org.example.Service;
 
 import org.example.DAO.SellerDAO;
 import org.example.Exceptions.SellerException;
-import org.example.Model.Product;
 import org.example.Model.Seller;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 

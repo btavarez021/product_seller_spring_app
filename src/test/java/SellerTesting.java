@@ -2,6 +2,7 @@ import org.example.DAO.SellerDAO;
 import org.example.Exceptions.SellerException;
 import org.example.Model.Seller;
 import org.example.Service.SellerService;
+import org.example.Util.ConnectionSingleton;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,10 +17,10 @@ public class SellerTesting {
     SellerService sellerService;
     SellerDAO sellerDAO;
 
-    Connection conn;
-
     @Before
     public void setUp(){
+        ConnectionSingleton.resetTestDatabase();
+        Connection conn = ConnectionSingleton.getConnection();
         sellerDAO = new SellerDAO(conn);
         sellerService = new SellerService(sellerDAO);
     }
@@ -31,16 +32,13 @@ public class SellerTesting {
     @Test
     public void insertSellerTest(){
 
-        UUID uuid = UUID.randomUUID();
-
         String sellerName = "Benny";
-        long productId = uuid.getMostSignificantBits() & Long.MAX_VALUE;
+        long sellerId = sellerService.generateSellerId();
 
-
-        Seller s =new Seller(sellerName, productId);
+        Seller s =new Seller(sellerName, sellerId);
 
         try {
-            sellerService.postSeller(s, productId);
+            sellerService.postSeller(s, sellerId);
         } catch (SellerException e) {
             Assert.fail("Unexpected exception occurred");
         }
@@ -63,7 +61,6 @@ public class SellerTesting {
             sellerService.postSeller(s, productId);
             Assert.fail("Expected Seller Exception due to empty product name");
         } catch (SellerException e) {
-            System.out.println(e.getMessage());
             Assert.assertEquals("You cannot have a blank seller name!", e.getMessage());
             Assert.assertTrue(sellerService.getSellerList().isEmpty());
         }

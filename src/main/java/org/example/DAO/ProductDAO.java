@@ -1,8 +1,6 @@
 package org.example.DAO;
 
 import org.example.Model.Product;
-import org.example.Model.Seller;
-
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
