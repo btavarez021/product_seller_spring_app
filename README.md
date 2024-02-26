@@ -1,6 +1,8 @@
+
+
 INSERT PRODUCT
 
-1. Always post a seller first
+1. Always post a seller first using localhost:9001/seller
 
 	In postman use the following JSON:
 
@@ -9,7 +11,7 @@ INSERT PRODUCT
 		"sellerName":"SELLERNAMEHERE"
 		}
 	
-2. Post Product.
+2. Post Product here localhost:9001/products
 
 	In post man use the following JSON. Fill values with your own.
 
