@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Seller {
 
-    long sellerId;
+    String sellerId;
     String sellerName;
 
 
@@ -13,7 +13,7 @@ public class Seller {
     }
 
 
-    public Seller(String sellerName, long sellerId){
+    public Seller(String sellerName, String sellerId){
 
         this.sellerId = sellerId;
         this.sellerName = sellerName;
@@ -50,11 +50,11 @@ public class Seller {
                 '}';
     }
 
-    public long getSellerId() {
+    public String getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(long productId) {
+    public void setSellerId(String productId) {
         this.sellerId = productId;
     }
 

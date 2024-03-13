@@ -37,9 +37,9 @@ public class ProductTesting {
     @Test
     public void insertProductTest(){
         //Generate unique ID's
-        long productId = productService.generateProductId();
-        long productId2 = productService.generateProductId();
-        long sellerId = sellerService.generateSellerId();
+        String productId = productService.generateProductId();
+        String productId2 = productService.generateProductId();
+        String sellerId = sellerService.generateSellerId();
 
         //Create Seller and post it
         String sellerName = "Benny";
@@ -76,8 +76,8 @@ public class ProductTesting {
     public void insertProductWithEmptySellerName(){
 
         //Generate unique ids
-        long productId = productService.generateProductId();
-        long sellerId = sellerService.generateSellerId();
+        String productId = productService.generateProductId();
+        String sellerId = sellerService.generateSellerId();
 
         //Create Seller and post it
         String sellerName = "Benny";
@@ -110,11 +110,11 @@ public class ProductTesting {
     }
     @Test
     public void insertProductWithEmptyProductName() {
-        long productId = productService.generateProductId();
+        String productId = productService.generateProductId();
         String productName = "";
         double price = 799.99;
         String sellerName = "Benny";
-        long sellerId = sellerService.generateSellerId();
+        String sellerId = sellerService.generateSellerId();
 
         Product p =new Product(productId, productName, price, sellerName, sellerId);
 
@@ -130,9 +130,9 @@ public class ProductTesting {
     @Test
     public void insertProductWithSellerThatDoesntExists() {
         //Generate unique ids
-        long productId = productService.generateProductId();
-        long productId2 = productService.generateProductId();
-        long sellerId = sellerService.generateSellerId();
+        String productId = productService.generateProductId();
+        String productId2 = productService.generateProductId();
+        String sellerId = sellerService.generateSellerId();
 
         //Create Seller and post it
         String sellerName = "Benny";
@@ -164,8 +164,8 @@ public class ProductTesting {
     @Test
     public void deleteProductWithId() throws ProductException {
         //Generate unique ids
-        long productId = productService.generateProductId();
-        long sellerId = sellerService.generateSellerId();
+        String productId = productService.generateProductId();
+        String sellerId = sellerService.generateSellerId();
 
         //Create Seller and post it
         String sellerName = "Benny";

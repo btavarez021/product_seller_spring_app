@@ -21,12 +21,11 @@ public class SellerService {
         return sellerList;
     }
 
-    public long generateSellerId(){
-        UUID uuid = UUID.randomUUID();
-        return uuid.getMostSignificantBits() & Long.MAX_VALUE;
+    public String generateSellerId(){
+        return  String.valueOf(UUID.randomUUID());
     }
 
-    public void postSeller(Seller seller, long sellerId) throws SellerException {
+    public void postSeller(Seller seller, String sellerId) throws SellerException {
         seller.setSellerId(sellerId);
         if(seller.getSellerName().isEmpty()){
             throw new SellerException("You cannot have a blank seller name!");
@@ -49,10 +48,10 @@ public class SellerService {
         return false;
     }
 
-    public void deleteSeller(long id){
+    public void deleteSeller(String id){
         for (int i = 0; i < sellerDAO.getSellerAllSeller().size(); i++) {
             Seller currentProduct = sellerDAO.getSellerAllSeller().get(i);
-            if (currentProduct.getSellerId() == id) {
+            if (currentProduct.getSellerId().equals(id)) {
                 sellerDAO.deleteSellerById(currentProduct);
             }
         }

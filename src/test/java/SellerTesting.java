@@ -33,7 +33,7 @@ public class SellerTesting {
     public void insertSellerTest(){
 
         String sellerName = "Benny";
-        long sellerId = sellerService.generateSellerId();
+        String sellerId = sellerService.generateSellerId();
 
         Seller s =new Seller(sellerName, sellerId);
 
@@ -52,9 +52,8 @@ public class SellerTesting {
     @Test
     public void insertProductWithEmptyProductName() {
         String sellerName = "";
-        UUID uuid = UUID.randomUUID();
 
-        long productId = uuid.getMostSignificantBits() & Long.MAX_VALUE;
+        String productId = String.valueOf(UUID.randomUUID());
         Seller s = new Seller(sellerName, productId);
 
         try {

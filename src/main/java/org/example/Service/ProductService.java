@@ -20,20 +20,22 @@ public class ProductService {
     public List<Product> getAllProducts(){
 
         List<Product> productList = productDAO.getAllProducts();
+        System.out.println("Result set: "+ productList);
+
         return productList;
 
     }
 
-    public long generateProductId(){
-        UUID uuid = UUID.randomUUID();
-        return uuid.getMostSignificantBits() & Long.MAX_VALUE;
+    public String generateProductId(){
+//        UUID uuid = UUID.randomUUID();
+        return String.valueOf(UUID.randomUUID());
     }
 
-    public void insertProduct(Product product, long productId) throws ProductException {
+    public void insertProduct(Product product, String productId) throws ProductException {
         product.setProductId(productId);
         validateProduct(product);
 
-        long sellerId = getSellerIdByName(product.getSellerName().trim());
+        String sellerId = getSellerIdByName(product.getSellerName().trim());
 
         String sellerName = product.getSellerName().trim();
 
@@ -47,7 +49,7 @@ public class ProductService {
 
     }
 
-    private long getSellerIdByName(String sellerName) throws ProductException
+    private String getSellerIdByName(String sellerName) throws ProductException
     {
         List<Seller> sellers = sellerService.getSellerList();
 
@@ -88,11 +90,13 @@ public class ProductService {
         }
     }
 
-    public void deleteProductById(Long id) throws ProductException {
+    public void deleteProductById(String id) throws ProductException {
 
         for (int i = 0; i < productDAO.getAllProducts().size(); i++) {
             Product currentProduct = productDAO.getAllProducts().get(i);
-            if (currentProduct.getProductId() == id) {
+            System.out.println(currentProduct.getProductId());
+            System.out.println(id);
+            if (currentProduct.getProductId().equals(id)) {
                 productDAO.deleteProductById(currentProduct);
             }
             else{
@@ -101,7 +105,7 @@ public class ProductService {
         }
     }
 
-    public void updateProductById(Product product, long productId) throws ProductException {
+    public void updateProductById(Product product, String productId) throws ProductException {
 
         String sellerName = product.getSellerName().trim();
 
@@ -114,8 +118,8 @@ public class ProductService {
             Product currentProduct = productDAO.getAllProducts().get(i);
             System.out.println(currentProduct.getProductId());
             System.out.println(productId);
-            if (currentProduct.getProductId() == productId) {
-                if(product.getProductId() != productId){
+            if (currentProduct.getProductId().equals(productId)) {
+                if(!product.getProductId().equals(productId)){
                     System.out.println(product.getProductId());
                     System.out.println(currentProduct.getProductId());
                     throw new ProductException("Product ID mismatch: " + productId);
@@ -129,10 +133,10 @@ public class ProductService {
 
     }
 
-    public Product getProductById(Long id){
+    public Product getProductById(String id){
         for(int i=0; i < productDAO.getAllProducts().size(); i++){
             Product currentProduct = productDAO.getAllProducts().get(i);
-            if(currentProduct.getProductId() == id){
+            if(currentProduct.getProductId().equals(id)){
                 return currentProduct;
             }
         }
@@ -150,9 +154,9 @@ public class ProductService {
                 .equalsIgnoreCase(sellerName));
     }
 
-    public boolean doesProductExist(long productId){
+    public boolean doesProductExist(String productId){
         for(Product product:productDAO.getAllProducts()){
-            if(product.getProductId() == productId){
+            if(product.getProductId().equals(productId)){
                 return true;
             }
         }

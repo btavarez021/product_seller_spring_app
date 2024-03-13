@@ -64,7 +64,7 @@ public class ProductController {
 
     public static void deleteProductByIdHandler(Context context){
         try {
-            long productId = Long.parseLong(context.pathParam("productId").trim());
+            String productId = context.pathParam("productId").trim();
             productService.deleteProductById(productId);
             context.status(200);
         }
@@ -75,7 +75,7 @@ public class ProductController {
     }
 
     public static void deleteSellerbyIdHander(Context context) {
-        long sellerId = Long.parseLong(context.pathParam("sellerId").trim());
+        String sellerId = context.pathParam("sellerId").trim();
         sellerService.deleteSeller(sellerId);
         context.status(200);
     }
@@ -95,7 +95,8 @@ public class ProductController {
         ObjectMapper om =new ObjectMapper();
 
         try {
-            long productId = productService.generateProductId();
+            String productId = productService.generateProductId();
+            System.out.println("here is the created product ID " + productId);
 //            long sellerId = sellerService.generateSellerId();
             Product p = om.readValue(context.body(), Product.class);
             productService.insertProduct(p, productId);
@@ -112,7 +113,7 @@ public class ProductController {
         ObjectMapper om =new ObjectMapper();
 
         try {
-            long productId = Long.parseLong(context.pathParam("productId").trim());
+            String productId = context.pathParam("productId").trim();
             Product p = om.readValue(context.body(), Product.class);
             productService.updateProductById(p, productId);
             context.status(201);
@@ -132,7 +133,7 @@ public class ProductController {
         ObjectMapper om =new ObjectMapper();
 
         try {
-            long sellerId = sellerService.generateSellerId();
+            String sellerId = sellerService.generateSellerId();
             Seller s = om.readValue(context.body(), Seller.class);
             sellerService.postSeller(s, sellerId);
             context.status(201);
@@ -146,7 +147,7 @@ public class ProductController {
 
     public static void getProductById(Context context){
         try{
-            long productId = Long.parseLong(context.pathParam("productId"));
+            String productId = context.pathParam("productId");
             Product p = productService.getProductById(productId);
             if(p == null){
                 context.status(404);

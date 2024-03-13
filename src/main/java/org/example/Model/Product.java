@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class Product {
 
-    private long productId;
+    private String productId;
     private String productName;
     private double price;
 
-    private long sellerId;
+    private String sellerId;
 
     private String sellerName;
 
@@ -17,7 +17,7 @@ public class Product {
 
     }
 
-    public Product(long productId, String productName, double price, String sellerName, long sellerId){
+    public Product(String productId, String productName, double price, String sellerName, String sellerId){
         this.productId = productId;
         this.productName = productName;
         this.price = price;
@@ -25,11 +25,11 @@ public class Product {
         this.sellerId = sellerId;
     }
 
-    public long getSellerId() {
+    public String getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(long sellerId) {
+    public void setSellerId(String sellerId) {
         this.sellerId = sellerId;
     }
 
@@ -67,7 +67,7 @@ public void setProductName(String productName){
     this.productName = productName;
 }
 
-public void setProductId(long productId){
+public void setProductId(String productId){
     this.productId = productId;
 }
 
@@ -75,7 +75,7 @@ public void setSellerName(String sellerName){
     this.sellerName = sellerName;
 }
 
-public long getProductId() {
+public String getProductId() {
 
     return productId;
 }
