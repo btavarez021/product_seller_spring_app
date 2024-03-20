@@ -29,18 +29,26 @@ public class SellerService {
 
 
 
-    public Seller saveSeller(Long id, Seller s) throws ProductException {
-        Optional<Product> optional = productRepository.findById(id);
-        Product p;
-        if(optional.isEmpty()){
-            throw new ProductException("no such product...");
-        }else{
-            p = optional.get();
+    public Seller saveSeller(Long productId, Seller seller) throws ProductException, SellerException {
+
+        // Check if a seller with the same name already exists
+        Optional<Seller> existingSellerOptional = sellerRepository.findBySellerName(seller.getSellerName());
+        if (existingSellerOptional.isPresent()) {
+            throw new SellerException("Seller with the same name already exists");
         }
-        Seller savedSeller = sellerRepository.save(s);
-        p.getSellers().add(savedSeller);
-        productRepository.save(p);
-        return savedSeller;
+
+        // Find the product by ID
+        Optional<Product> optionalProduct = productRepository.findById(productId);
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+            // Save the seller and associate it with the product
+            Seller savedSeller = sellerRepository.save(seller);
+            product.getSellers().add(savedSeller);
+            productRepository.save(product);
+            return savedSeller;
+        } else {
+            throw new ProductException("No product found with the given id: " + productId);
+        }
     }
 
     public Seller createSeller(Seller s){
