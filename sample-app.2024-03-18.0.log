@@ -1,0 +1,340 @@
+2024-03-18 16:14:51,087 INFO  [restartedMain] o.s.b.StartupInfoLogger: Starting Main using Java 21.0.2 with PID 22548 (C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring\target\classes started by A271404 in C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring)
+2024-03-18 16:14:51,090 INFO  [restartedMain] o.s.b.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-03-18 16:14:51,161 INFO  [restartedMain] o.s.b.l.DeferredLog: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-18 16:14:51,161 INFO  [restartedMain] o.s.b.l.DeferredLog: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-18 16:14:52,202 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-18 16:14:52,270 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 55 ms. Found 2 JPA repository interfaces.
+2024-03-18 16:14:53,237 INFO  [restartedMain] o.s.b.w.e.t.TomcatWebServer: Tomcat initialized with port 9000 (http)
+2024-03-18 16:14:53,250 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing ProtocolHandler ["http-nio-9000"]
+2024-03-18 16:14:53,252 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting service [Tomcat]
+2024-03-18 16:14:53,253 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-18 16:14:53,315 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-03-18 16:14:53,316 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 2153 ms
+2024-03-18 16:14:53,576 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Starting...
+2024-03-18 16:14:53,841 INFO  [restartedMain] c.z.h.p.HikariPool: HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:96308a41-31cd-431a-97f5-990ec8ffa956 user=SA
+2024-03-18 16:14:53,846 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Start completed.
+2024-03-18 16:14:53,868 INFO  [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration: H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:96308a41-31cd-431a-97f5-990ec8ffa956'
+2024-03-18 16:14:54,335 INFO  [restartedMain] o.h.j.i.u.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-18 16:14:54,528 INFO  [restartedMain] o.hibernate.Version: HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-03-18 16:14:54,571 INFO  [restartedMain] o.h.c.i.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2024-03-18 16:14:54,864 INFO  [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-18 16:14:54,996 ERROR [restartedMain] o.s.o.j.AbstractEntityManagerFactoryBean: Failed to initialize JPA EntityManagerFactory: Entity 'org.example.Model.Product' has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
+2024-03-18 16:14:54,997 WARN  [restartedMain] o.s.c.s.AbstractApplicationContext: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Entity 'org.example.Model.Product' has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
+2024-03-18 16:14:55,209 WARN  [restartedMain] o.s.b.f.s.DisposableBeanAdapter: Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-03-18 16:14:55,210 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Shutdown initiated...
+2024-03-18 16:14:55,213 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Shutdown completed.
+2024-03-18 16:14:55,215 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Stopping service [Tomcat]
+2024-03-18 16:14:55,227 INFO  [restartedMain] o.s.b.a.l.ConditionEvaluationReportLogger: 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-03-18 16:14:55,245 ERROR [restartedMain] o.s.b.SpringApplication: Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Entity 'org.example.Model.Product' has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.example.Main.main(Main.java:11)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.hibernate.AnnotationException: Entity 'org.example.Model.Product' has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
+	at org.hibernate.boot.model.internal.InheritanceState.determineDefaultAccessType(InheritanceState.java:279)
+	at org.hibernate.boot.model.internal.InheritanceState.getElementsToProcess(InheritanceState.java:215)
+	at org.hibernate.boot.model.internal.InheritanceState.postProcess(InheritanceState.java:160)
+	at org.hibernate.boot.model.internal.EntityBinder.handleIdentifier(EntityBinder.java:348)
+	at org.hibernate.boot.model.internal.EntityBinder.bindEntityClass(EntityBinder.java:237)
+	at org.hibernate.boot.model.internal.AnnotationBinder.bindClass(AnnotationBinder.java:423)
+	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.processEntityHierarchies(AnnotationMetadataSourceProcessorImpl.java:256)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess$1.processEntityHierarchies(MetadataBuildingProcess.java:279)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:322)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:388)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:364)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 19 common frames omitted
+2024-03-18 16:16:23,586 INFO  [restartedMain] o.s.b.StartupInfoLogger: Starting Main using Java 21.0.2 with PID 40120 (C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring\target\classes started by A271404 in C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring)
+2024-03-18 16:16:23,589 INFO  [restartedMain] o.s.b.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-03-18 16:16:23,626 INFO  [restartedMain] o.s.b.l.DeferredLog: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-18 16:16:23,626 INFO  [restartedMain] o.s.b.l.DeferredLog: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-18 16:16:24,621 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-18 16:16:24,690 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 54 ms. Found 2 JPA repository interfaces.
+2024-03-18 16:16:25,595 INFO  [restartedMain] o.s.b.w.e.t.TomcatWebServer: Tomcat initialized with port 9000 (http)
+2024-03-18 16:16:25,614 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing ProtocolHandler ["http-nio-9000"]
+2024-03-18 16:16:25,616 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting service [Tomcat]
+2024-03-18 16:16:25,617 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-18 16:16:25,679 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-03-18 16:16:25,680 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 2053 ms
+2024-03-18 16:16:25,903 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Starting...
+2024-03-18 16:16:26,097 INFO  [restartedMain] c.z.h.p.HikariPool: HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:57b8a8ab-8a20-45e3-87b4-21765debdabc user=SA
+2024-03-18 16:16:26,098 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Start completed.
+2024-03-18 16:16:26,110 INFO  [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration: H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:57b8a8ab-8a20-45e3-87b4-21765debdabc'
+2024-03-18 16:16:26,416 INFO  [restartedMain] o.h.j.i.u.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-18 16:16:26,533 INFO  [restartedMain] o.hibernate.Version: HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-03-18 16:16:26,570 INFO  [restartedMain] o.h.c.i.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2024-03-18 16:16:26,813 INFO  [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-18 16:16:27,428 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-18 16:16:27,453 INFO  [restartedMain] o.s.o.j.AbstractEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-18 16:16:27,852 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-18 16:16:28,742 INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer: LiveReload server is running on port 35729
+2024-03-18 16:16:28,763 INFO  [restartedMain] o.s.b.a.e.w.EndpointLinksResolver: Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-03-18 16:16:28,859 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting ProtocolHandler ["http-nio-9000"]
+2024-03-18 16:16:28,870 WARN  [restartedMain] o.s.c.s.AbstractApplicationContext: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-03-18 16:16:28,872 INFO  [restartedMain] o.s.o.j.AbstractEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-18 16:16:29,095 WARN  [restartedMain] o.s.b.f.s.DisposableBeanAdapter: Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-03-18 16:16:29,096 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Shutdown initiated...
+2024-03-18 16:16:29,098 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Shutdown completed.
+2024-03-18 16:16:29,114 INFO  [restartedMain] o.s.b.a.l.ConditionEvaluationReportLogger: 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-03-18 16:16:29,134 ERROR [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter: 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 9000 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 9000 or configure this application to listen on another port.
+
+2024-03-18 16:17:23,329 INFO  [restartedMain] o.s.b.StartupInfoLogger: Starting Main using Java 21.0.2 with PID 31452 (C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring\target\classes started by A271404 in C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring)
+2024-03-18 16:17:23,331 INFO  [restartedMain] o.s.b.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-03-18 16:17:23,371 INFO  [restartedMain] o.s.b.l.DeferredLog: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-18 16:17:23,371 INFO  [restartedMain] o.s.b.l.DeferredLog: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-18 16:17:24,254 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-18 16:17:24,321 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 52 ms. Found 2 JPA repository interfaces.
+2024-03-18 16:17:25,140 INFO  [restartedMain] o.s.b.w.e.t.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2024-03-18 16:17:25,151 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-18 16:17:25,153 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting service [Tomcat]
+2024-03-18 16:17:25,153 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-18 16:17:25,210 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-03-18 16:17:25,211 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 1839 ms
+2024-03-18 16:17:25,416 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Starting...
+2024-03-18 16:17:25,575 INFO  [restartedMain] c.z.h.p.HikariPool: HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:394c4777-b33a-438f-acb0-76b67ad0a9a3 user=SA
+2024-03-18 16:17:25,576 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Start completed.
+2024-03-18 16:17:25,586 INFO  [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration: H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:394c4777-b33a-438f-acb0-76b67ad0a9a3'
+2024-03-18 16:17:25,980 INFO  [restartedMain] o.h.j.i.u.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-18 16:17:26,082 INFO  [restartedMain] o.hibernate.Version: HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-03-18 16:17:26,116 INFO  [restartedMain] o.h.c.i.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2024-03-18 16:17:26,390 INFO  [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-18 16:17:26,992 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-18 16:17:27,015 INFO  [restartedMain] o.s.o.j.AbstractEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-18 16:17:27,372 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-18 16:17:28,290 INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer: LiveReload server is running on port 35729
+2024-03-18 16:17:28,304 INFO  [restartedMain] o.s.b.a.e.w.EndpointLinksResolver: Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-03-18 16:17:28,398 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting ProtocolHandler ["http-nio-8080"]
+2024-03-18 16:17:28,423 INFO  [restartedMain] o.s.b.w.e.t.TomcatWebServer: Tomcat started on port 8080 (http) with context path ''
+2024-03-18 16:17:28,436 INFO  [restartedMain] o.s.b.StartupInfoLogger: Started Main in 5.399 seconds (process running for 5.993)
+2024-03-18 16:18:47,784 INFO  [SpringApplicationShutdownHook] o.s.o.j.AbstractEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-18 16:18:48,001 WARN  [SpringApplicationShutdownHook] o.s.b.f.s.DisposableBeanAdapter: Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-03-18 16:18:48,001 INFO  [SpringApplicationShutdownHook] c.z.h.HikariDataSource: HikariPool-1 - Shutdown initiated...
+2024-03-18 16:18:48,003 INFO  [SpringApplicationShutdownHook] c.z.h.HikariDataSource: HikariPool-1 - Shutdown completed.
+2024-03-18 16:18:51,464 INFO  [restartedMain] o.s.b.StartupInfoLogger: Starting Main using Java 21.0.2 with PID 43704 (C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring\target\classes started by A271404 in C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring)
+2024-03-18 16:18:51,467 INFO  [restartedMain] o.s.b.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-03-18 16:18:51,511 INFO  [restartedMain] o.s.b.l.DeferredLog: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-18 16:18:51,512 INFO  [restartedMain] o.s.b.l.DeferredLog: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-18 16:18:52,399 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-18 16:18:52,451 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 40 ms. Found 2 JPA repository interfaces.
+2024-03-18 16:18:53,303 INFO  [restartedMain] o.s.b.w.e.t.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2024-03-18 16:18:53,314 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-18 16:18:53,317 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting service [Tomcat]
+2024-03-18 16:18:53,317 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-18 16:18:53,370 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-03-18 16:18:53,371 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 1858 ms
+2024-03-18 16:18:53,607 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Starting...
+2024-03-18 16:18:53,859 INFO  [restartedMain] c.z.h.p.HikariPool: HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:944b8786-6315-4a78-bf0d-236c60429855 user=SA
+2024-03-18 16:18:53,864 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Start completed.
+2024-03-18 16:18:53,886 INFO  [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration: H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:944b8786-6315-4a78-bf0d-236c60429855'
+2024-03-18 16:18:54,327 INFO  [restartedMain] o.h.j.i.u.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-18 16:18:54,440 INFO  [restartedMain] o.hibernate.Version: HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-03-18 16:18:54,481 INFO  [restartedMain] o.h.c.i.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2024-03-18 16:18:54,772 INFO  [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-18 16:18:55,492 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-18 16:18:55,516 INFO  [restartedMain] o.s.o.j.AbstractEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-18 16:18:56,022 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-18 16:18:56,147 WARN  [restartedMain] o.s.c.s.AbstractApplicationContext: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'productController' method 
+org.example.Controller.ProductController#insertSellerEndpoint(Seller)
+to {GET [/sellers]}: There is already 'productController' bean method
+org.example.Controller.ProductController#getAllSellersEndpoint() mapped.
+2024-03-18 16:18:56,147 INFO  [restartedMain] o.s.o.j.AbstractEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-18 16:18:56,364 WARN  [restartedMain] o.s.b.f.s.DisposableBeanAdapter: Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-03-18 16:18:56,365 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Shutdown initiated...
+2024-03-18 16:18:56,367 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Shutdown completed.
+2024-03-18 16:18:56,370 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Stopping service [Tomcat]
+2024-03-18 16:18:56,384 INFO  [restartedMain] o.s.b.a.l.ConditionEvaluationReportLogger: 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-03-18 16:18:56,405 ERROR [restartedMain] o.s.b.SpringApplication: Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'productController' method 
+org.example.Controller.ProductController#insertSellerEndpoint(Seller)
+to {GET [/sellers]}: There is already 'productController' bean method
+org.example.Controller.ProductController#getAllSellersEndpoint() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.example.Main.main(Main.java:11)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
+org.example.Controller.ProductController#insertSellerEndpoint(Seller)
+to {GET [/sellers]}: There is already 'productController' bean method
+org.example.Controller.ProductController#getAllSellersEndpoint() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:672)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:508)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:84)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:986)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:239)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 19 common frames omitted
+2024-03-18 16:19:18,827 INFO  [restartedMain] o.s.b.StartupInfoLogger: Starting Main using Java 21.0.2 with PID 43336 (C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring\target\classes started by A271404 in C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring)
+2024-03-18 16:19:18,830 INFO  [restartedMain] o.s.b.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-03-18 16:19:18,869 INFO  [restartedMain] o.s.b.l.DeferredLog: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-18 16:19:18,869 INFO  [restartedMain] o.s.b.l.DeferredLog: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-18 16:19:19,704 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-18 16:19:19,755 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 43 ms. Found 2 JPA repository interfaces.
+2024-03-18 16:19:20,663 INFO  [restartedMain] o.s.b.w.e.t.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2024-03-18 16:19:20,677 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-18 16:19:20,679 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting service [Tomcat]
+2024-03-18 16:19:20,681 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-18 16:19:20,741 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-03-18 16:19:20,742 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 1872 ms
+2024-03-18 16:19:20,981 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Starting...
+2024-03-18 16:19:21,204 INFO  [restartedMain] c.z.h.p.HikariPool: HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:f9d53512-ecdb-42aa-b03d-c9cb65d76e0b user=SA
+2024-03-18 16:19:21,206 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Start completed.
+2024-03-18 16:19:21,219 INFO  [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration: H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:f9d53512-ecdb-42aa-b03d-c9cb65d76e0b'
+2024-03-18 16:19:21,635 INFO  [restartedMain] o.h.j.i.u.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-18 16:19:21,740 INFO  [restartedMain] o.hibernate.Version: HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-03-18 16:19:21,777 INFO  [restartedMain] o.h.c.i.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2024-03-18 16:19:22,005 INFO  [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-18 16:19:22,639 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-18 16:19:22,662 INFO  [restartedMain] o.s.o.j.AbstractEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-18 16:19:23,127 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-18 16:19:23,267 WARN  [restartedMain] o.s.c.s.AbstractApplicationContext: Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'productController' method 
+org.example.Controller.ProductController#insertSellerEndpoint(Seller)
+to {GET [/sellers]}: There is already 'productController' bean method
+org.example.Controller.ProductController#getAllSellersEndpoint() mapped.
+2024-03-18 16:19:23,268 INFO  [restartedMain] o.s.o.j.AbstractEntityManagerFactoryBean: Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-18 16:19:23,480 WARN  [restartedMain] o.s.b.f.s.DisposableBeanAdapter: Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+2024-03-18 16:19:23,480 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Shutdown initiated...
+2024-03-18 16:19:23,482 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Shutdown completed.
+2024-03-18 16:19:23,484 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Stopping service [Tomcat]
+2024-03-18 16:19:23,496 INFO  [restartedMain] o.s.b.a.l.ConditionEvaluationReportLogger: 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-03-18 16:19:23,513 ERROR [restartedMain] o.s.b.SpringApplication: Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'productController' method 
+org.example.Controller.ProductController#insertSellerEndpoint(Seller)
+to {GET [/sellers]}: There is already 'productController' bean method
+org.example.Controller.ProductController#getAllSellersEndpoint() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.example.Main.main(Main.java:11)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'productController' method 
+org.example.Controller.ProductController#insertSellerEndpoint(Seller)
+to {GET [/sellers]}: There is already 'productController' bean method
+org.example.Controller.ProductController#getAllSellersEndpoint() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:672)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:634)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:508)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:84)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:986)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:239)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1833)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782)
+	... 19 common frames omitted
+2024-03-18 16:20:46,566 INFO  [restartedMain] o.s.b.StartupInfoLogger: Starting Main using Java 21.0.2 with PID 36008 (C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring\target\classes started by A271404 in C:\Users\A271404\java_bootcamp\HTTP_Project_w_Spring)
+2024-03-18 16:20:46,569 INFO  [restartedMain] o.s.b.SpringApplication: No active profile set, falling back to 1 default profile: "default"
+2024-03-18 16:20:46,609 INFO  [restartedMain] o.s.b.l.DeferredLog: Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-03-18 16:20:46,610 INFO  [restartedMain] o.s.b.l.DeferredLog: For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-03-18 16:20:47,498 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-18 16:20:47,565 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate: Finished Spring Data repository scanning in 50 ms. Found 2 JPA repository interfaces.
+2024-03-18 16:20:48,563 INFO  [restartedMain] o.s.b.w.e.t.TomcatWebServer: Tomcat initialized with port 8080 (http)
+2024-03-18 16:20:48,576 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing ProtocolHandler ["http-nio-8080"]
+2024-03-18 16:20:48,578 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting service [Tomcat]
+2024-03-18 16:20:48,578 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-03-18 16:20:48,635 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Initializing Spring embedded WebApplicationContext
+2024-03-18 16:20:48,636 INFO  [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 2026 ms
+2024-03-18 16:20:48,828 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Starting...
+2024-03-18 16:20:49,003 INFO  [restartedMain] c.z.h.p.HikariPool: HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:786c619c-41ed-444c-9fa5-b79c6e058307 user=SA
+2024-03-18 16:20:49,004 INFO  [restartedMain] c.z.h.HikariDataSource: HikariPool-1 - Start completed.
+2024-03-18 16:20:49,012 INFO  [restartedMain] o.s.b.a.h.H2ConsoleAutoConfiguration: H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:786c619c-41ed-444c-9fa5-b79c6e058307'
+2024-03-18 16:20:49,416 INFO  [restartedMain] o.h.j.i.u.LogHelper: HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-18 16:20:49,524 INFO  [restartedMain] o.hibernate.Version: HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-03-18 16:20:49,607 INFO  [restartedMain] o.h.c.i.RegionFactoryInitiator: HHH000026: Second-level cache disabled
+2024-03-18 16:20:49,873 INFO  [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo: No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-18 16:20:50,580 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-18 16:20:50,603 INFO  [restartedMain] o.s.o.j.AbstractEntityManagerFactoryBean: Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-18 16:20:50,995 WARN  [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-18 16:20:52,085 INFO  [restartedMain] o.s.b.d.a.OptionalLiveReloadServer: LiveReload server is running on port 35729
+2024-03-18 16:20:52,102 INFO  [restartedMain] o.s.b.a.e.w.EndpointLinksResolver: Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-03-18 16:20:52,226 INFO  [restartedMain] o.a.j.l.DirectJDKLog: Starting ProtocolHandler ["http-nio-8080"]
+2024-03-18 16:20:52,264 INFO  [restartedMain] o.s.b.w.e.t.TomcatWebServer: Tomcat started on port 8080 (http) with context path ''
+2024-03-18 16:20:52,279 INFO  [restartedMain] o.s.b.StartupInfoLogger: Started Main in 6.053 seconds (process running for 6.692)
+2024-03-18 16:21:00,472 INFO  [http-nio-8080-exec-2] o.a.j.l.DirectJDKLog: Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-18 16:21:00,472 INFO  [http-nio-8080-exec-2] o.s.w.s.FrameworkServlet: Initializing Servlet 'dispatcherServlet'
+2024-03-18 16:21:00,473 INFO  [http-nio-8080-exec-2] o.s.w.s.FrameworkServlet: Completed initialization in 0 ms

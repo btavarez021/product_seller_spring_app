@@ -1,12 +1,8 @@
 import org.eclipse.jetty.security.PropertyUserStore;
 import org.example.DAO.ProductDAO;
 import org.example.DAO.SellerDAO;
-import org.example.Exceptions.ProductException;
-import org.example.Exceptions.SellerException;
 import org.example.Model.Product;
-import org.example.Model.Seller;
 import org.example.Service.ProductService;
-import org.example.Service.SellerService;
 import org.example.Util.ConnectionSingleton;
 import org.junit.After;
 import org.junit.Assert;
