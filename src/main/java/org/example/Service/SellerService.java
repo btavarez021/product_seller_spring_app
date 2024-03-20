@@ -26,7 +26,7 @@ public class SellerService {
         return sellerRepository.findAll();
     }
 
-    public Seller saveSellerById(String id, Seller s) throws SellerException {
+    public Seller saveSellerById(Long id, Seller s) throws SellerException {
         Optional<Product> optional = productRepository.findById(id);
         Product p;
         if(optional.isEmpty()){
