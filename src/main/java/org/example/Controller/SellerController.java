@@ -35,7 +35,7 @@ public class SellerController {
 
     @PostMapping("/product/{id}/sellers")
     public ResponseEntity<Seller> addSeller(@RequestBody Seller s, @PathVariable Long id) throws Exception {
-        Seller seller = sellerService.saveSellerById(id, s);
+        Seller seller = sellerService.saveSeller(id, s);
         return new ResponseEntity<>(seller, HttpStatus.CREATED);
     }
 

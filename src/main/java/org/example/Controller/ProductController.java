@@ -20,10 +20,11 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping("/product")
-    public ResponseEntity<List<Product>> getAllArtist(){
+    public ResponseEntity<List<Product>> getAllProducts(){
         List<Product> product = productService.getAllProducts();
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
+
     @PostMapping("/product")
     public ResponseEntity<Product> addProduct(@RequestBody Product p){
         Product product = productService.saveProduct(p);

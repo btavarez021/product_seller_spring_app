@@ -1,5 +1,6 @@
 package org.example.Service;
 
+import org.example.Exceptions.ProductException;
 import org.example.Model.Seller;
 import org.example.Model.Product;
 import org.example.Exceptions.SellerException;
@@ -26,11 +27,13 @@ public class SellerService {
         return sellerRepository.findAll();
     }
 
-    public Seller saveSellerById(Long id, Seller s) throws SellerException {
+
+
+    public Seller saveSeller(Long id, Seller s) throws ProductException {
         Optional<Product> optional = productRepository.findById(id);
         Product p;
         if(optional.isEmpty()){
-            throw new SellerException("no such seller...");
+            throw new ProductException("no such product...");
         }else{
             p = optional.get();
         }
