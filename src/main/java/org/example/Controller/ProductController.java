@@ -16,8 +16,12 @@ import java.util.List;
 @RestController
 public class ProductController {
     ProductService productService;
-    public ProductController(ProductService productService){
+    SellerService sellerService;
+
+    public ProductController(ProductService productService, SellerService sellerService){
         this.productService = productService;
+        this.sellerService = sellerService;
+
     }
     @GetMapping("/product")
     public ResponseEntity<List<Product>> getAllProducts(){
@@ -26,9 +30,30 @@ public class ProductController {
     }
 
     @PostMapping("/product")
-    public ResponseEntity<Product> addProduct(@RequestBody Product p){
-        Product product = productService.saveProduct(p);
-        return new ResponseEntity<>(product, HttpStatus.CREATED);
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        // Retrieve sellers by name
+        List<Seller> sellers = sellerService.getAllSellersByName(product.getSellerName());
+
+        // Check if any sellers were found
+        if (sellers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        // Use the first seller
+        Seller seller = sellers.get(0);
+
+        // Create a new product
+        Product newProduct = new Product();
+        newProduct.setProductName(product.getProductName());
+        newProduct.setPrice(product.getPrice());
+
+        // Associate the product with the seller
+        newProduct.getSellers().add(seller);
+
+        // Save the product
+        Product savedProduct = productService.saveProduct(newProduct);
+
+        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/product/{id}")

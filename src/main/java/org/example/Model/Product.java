@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,9 +23,9 @@ public class Product {
     private long id;
     private String productName;
     private double price;
-    @OneToMany
-    @JoinColumn(name="product_fk")
-    public List<Seller> sellers;
-}
+    private String sellerName;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Seller> sellers = new ArrayList<>();
+}
 

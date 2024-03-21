@@ -27,13 +27,15 @@ public class SellerService {
         return sellerRepository.findAll();
     }
 
-
-
     public Seller saveSeller(Long productId, Seller seller) throws ProductException, SellerException {
 
         // Check if a seller with the same name already exists
         Optional<Seller> existingSellerOptional = sellerRepository.findBySellerName(seller.getSellerName());
         if (existingSellerOptional.isPresent()) {
+            Seller existingSeller = existingSellerOptional.get();
+            if (existingSeller.equals(seller)) {
+                throw new SellerException("Seller with the same details already exists");
+            }
             throw new SellerException("Seller with the same name already exists");
         }
 
@@ -50,6 +52,7 @@ public class SellerService {
             throw new ProductException("No product found with the given id: " + productId);
         }
     }
+
 
     public Seller createSeller(Seller s){
         Seller savedSeller = sellerRepository.save(s);
@@ -71,7 +74,7 @@ public class SellerService {
     }
 
 
-    public List<Seller> getAllSellersByTitle(String sellerName) {
+    public List<Seller> getAllSellersByName(String sellerName) {
         return sellerRepository.findBySellerName2(sellerName);
     }
 

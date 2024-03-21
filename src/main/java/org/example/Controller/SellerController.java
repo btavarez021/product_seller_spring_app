@@ -21,7 +21,7 @@ public class SellerController {
         if (sellerName == null) {
             sellers = sellerService.getAllSellers();
         }else{
-            sellers = sellerService.getAllSellersByTitle(sellerName);
+            sellers = sellerService.getAllSellersByName(sellerName);
         }
         return new ResponseEntity<>(sellers, HttpStatus.OK);
     }
